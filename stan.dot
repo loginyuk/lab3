@@ -1,0 +1,39 @@
+digraph G {
+    graph [rankdir=LR labelfontcolor=red fontname="monospace" nodesep=1.0 size="7.75,10.25"]
+    node [fontname="monospace" fontsize=11]
+    edge [fontname="monospace" color="grey" fontsize=11]
+
+    start [label="start", shape="circle"]
+    sleep [label="sleep", shape="circle"]
+    eat [label="eat", shape="circle"]
+    study [label="study", shape="circle"]
+    clean [label="clean", shape="circle"]
+    activities [label="activities", shape="circle"]
+    end [label="end", shape="doublecircle"]
+
+    start -> sleep [label="day starts"]
+    start -> eat [label="day starts"]
+    start -> study [label="day starts"]
+    start -> clean [label="day starts"]
+    start -> activities [label="day starts"]
+
+    sleep -> eat [label="always"]
+
+    eat -> activities [label="hour == 19"]
+    eat -> study [label="hour != 19"]
+
+    stydy -> activities [label="stydy time  <= 2"]
+    study -> clean [label="stydy time >= 3 and hour == 14"]
+    study -> eat [label="stydy time >= 3"]
+
+    clean -> activities [label="hour >= 18 or hour < 13"]
+    clean -> eat [label="14 <= hour < 18"]
+
+    activities -> eat [label="always"]
+
+    eat -> end [label="hour > 24"]
+    sleep -> end [label="hour > 24"]
+    study -> end [label="hour > 24"]
+    clean -> end [label="hour > 24"]
+    activities -> end [label="hour > 24"]
+}
